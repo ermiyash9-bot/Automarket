@@ -1,117 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<meta name="theme-color" content="#111827">
 
 <title>AutoMarket - Cars for Sale</title>
 
 <meta name="description"
-content="AutoMarket - Cars for sale in USD. Browse Toyota, BMW, Mercedes-Benz, Audi, Tesla, Ford and other vehicles.">
+      content="AutoMarket - Browse cars for sale. Toyota, BMW, Mercedes-Benz, Audi, Tesla, Ford, Hyundai, Kia and Nissan.">
 
-<!-- GOOGLE SEARCH CONSOLE VERIFICATION -->
+<!-- Google Search Console verification -->
+<!-- Replace YOUR_GOOGLE_CODE_HERE with your real verification code -->
 <meta name="google-site-verification"
-content="YOUR_GOOGLE_CODE_HERE">
-
+      content="YOUR_GOOGLE_CODE_HERE">
 
 <style>
 
+/* =========================
+   BASIC
+========================= */
+
 * {
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    color: #222;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f3f4f6;
+    color: #111827;
 }
 
+/* =========================
+   HEADER
+========================= */
+
 header {
-    background: #111;
+    background: linear-gradient(135deg, #111827, #1f2937);
     color: white;
-    padding: 22px;
+    padding: 24px 15px 22px;
     text-align: center;
 }
 
-header h1 {
-    margin: 0 0 8px;
+.logo {
+    margin: 0;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 800;
+}
+
+.subtitle {
+    margin: 7px 0 18px;
+    color: #d1d5db;
+    font-size: 15px;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box {
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+    position: relative;
 }
 
 .search {
-    width: 90%;
-    max-width: 500px;
-    padding: 13px;
+    width: 100%;
+    height: 54px;
     border: 0;
-    border-radius: 8px;
+    border-radius: 15px;
+    padding: 0 18px 0 48px;
     font-size: 16px;
+    outline: none;
+    background: white;
+    color: #111827;
 }
 
-.container {
-    width: 94%;
-    max-width: 1100px;
-    margin: 25px auto;
+.search-icon {
+    position: absolute;
+    left: 17px;
+    top: 16px;
+    font-size: 20px;
 }
+
+/* =========================
+   FILTERS
+========================= */
+
+.filters {
+    width: 100%;
+    max-width: 1100px;
+    margin: 15px auto 0;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 2px 0 5px;
+    scrollbar-width: none;
+}
+
+.filters::-webkit-scrollbar {
+    display: none;
+}
+
+.filter-btn {
+    width: auto;
+    min-width: max-content;
+    min-height: 42px;
+    margin: 0;
+    padding: 9px 15px;
+    border-radius: 22px;
+    background: #374151;
+    color: white;
+    font-size: 14px;
+}
+
+.filter-btn.active {
+    background: #1677ff;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.container {
+    width: min(94%, 1250px);
+    margin: 24px auto 100px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.section-title {
+    margin: 0;
+    font-size: 23px;
+}
+
+.car-count {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* =========================
+   CAR GRID
+========================= */
 
 .cars {
     display: grid;
-    grid-template-columns:
-    repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
 }
+
+/* =========================
+   CAR CARD
+========================= */
 
 .car {
     background: white;
-    border-radius: 12px;
+    border-radius: 17px;
     overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0,0,0,.12);
+    box-shadow: 0 4px 15px rgba(0,0,0,.10);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
 }
 
-.car img {
+.car-image {
     width: 100%;
-    height: 190px;
+    aspect-ratio: 16 / 10;
     object-fit: cover;
+    display: block;
+    background: #e5e7eb;
 }
 
 .car-info {
-    padding: 15px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .car h2 {
-    margin-top: 0;
+    margin: 0 0 7px;
+    font-size: 20px;
+    line-height: 1.25;
 }
 
 .price {
-    color: #0a8f3d;
+    color: #07883b;
     font-size: 22px;
-    font-weight: bold;
+    font-weight: 800;
 }
 
 .market {
-    font-size: 13px;
-    color: #777;
-    margin-top: 4px;
+    margin-top: 3px;
+    color: #6b7280;
+    font-size: 12px;
 }
 
-.details {
-    color: #666;
-    line-height: 1.6;
-    margin-top: 8px;
+.specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin: 12px 0;
 }
+
+.spec {
+    background: #f3f4f6;
+    border-radius: 8px;
+    padding: 7px;
+    font-size: 12px;
+    color: #374151;
+}
+
+.description {
+    color: #4b5563;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 3px 0 12px;
+    flex: 1;
+}
+
+.buttons {
+    margin-top: auto;
+}
+
+/* =========================
+   BUTTONS
+========================= */
 
 button {
-    width: 100%;
-    padding: 13px;
+    min-height: 48px;
     border: 0;
-    border-radius: 7px;
-    margin-top: 8px;
-    font-size: 16px;
-    font-weight: bold;
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-size: 15px;
+    font-weight: 700;
     cursor: pointer;
+    touch-action: manipulation;
+}
+
+.buttons button {
+    width: 100%;
+    margin-top: 8px;
 }
 
 .buy {
@@ -120,616 +265,1898 @@ button {
 }
 
 .whatsapp {
-    background: #25D366;
+    background: #25d366;
     color: white;
 }
+
+.close {
+    background: #6b7280;
+    color: white;
+}
+
+button:active {
+    transform: scale(.98);
+    opacity: .85;
+}
+
+/* =========================
+   NO RESULTS
+========================= */
+
+.no-results {
+    display: none;
+    background: white;
+    text-align: center;
+    padding: 35px 15px;
+    border-radius: 15px;
+}
+
+.no-results h3 {
+    margin-top: 0;
+}
+
+/* =========================
+   MODAL
+========================= */
 
 .modal {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,.7);
     z-index: 1000;
-    padding: 20px;
+    background: rgba(0,0,0,.72);
+    padding: 15px;
+    overflow-y: auto;
 }
 
 .modal-box {
+    width: min(100%, 470px);
+    margin: 25px auto;
     background: white;
-    max-width: 450px;
-    margin: 60px auto;
-    padding: 25px;
-    border-radius: 12px;
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 10px 40px rgba(0,0,0,.3);
+}
+
+.modal-box h2 {
+    margin-top: 0;
+}
+
+.selected-car {
+    background: #f3f4f6;
+    border-radius: 11px;
+    padding: 14px;
+    margin: 12px 0;
+}
+
+.selected-car-name {
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.selected-price {
+    color: #07883b;
+    font-size: 22px;
+    font-weight: 800;
 }
 
 .modal-box input {
     width: 100%;
-    padding: 13px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 7px;
+    height: 52px;
+    padding: 0 14px;
+    margin: 7px 0;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
     font-size: 16px;
+    outline: none;
 }
 
-.close {
-    background: #777;
-    color: white;
+.modal-box input:focus {
+    border-color: #1677ff;
 }
+
+.modal-box button {
+    width: 100%;
+    margin-top: 8px;
+}
+
+/* =========================
+   STICKY WHATSAPP
+========================= */
+
+.sticky-whatsapp {
+    position: fixed;
+    right: 14px;
+    bottom: 14px;
+    z-index: 900;
+    width: auto;
+    min-width: 145px;
+    height: 52px;
+    border-radius: 28px;
+    background: #25d366;
+    color: white;
+    box-shadow: 0 5px 20px rgba(0,0,0,.25);
+}
+
+/* =========================
+   FOOTER
+========================= */
 
 footer {
-    background: #111;
-    color: white;
+    background: #111827;
+    color: #d1d5db;
     text-align: center;
-    padding: 25px;
-    margin-top: 30px;
+    padding: 27px 15px;
+    font-size: 14px;
+}
+
+footer p {
+    margin: 6px;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1000px) {
+
+    .cars {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* =========================
+   ANDROID PORTRAIT
+========================= */
+
+@media (max-width: 700px) {
+
+    header {
+        padding: 20px 12px;
+    }
+
+    .container {
+        width: 92%;
+        margin-top: 19px;
+    }
+
+    .cars {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 13px;
+    }
+
+    .car-image {
+        aspect-ratio: 4 / 3;
+    }
+
+    .car-info {
+        padding: 12px;
+    }
+
+    .car h2 {
+        font-size: 17px;
+    }
+
+    .price {
+        font-size: 19px;
+    }
+
+    .specs {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .spec {
+        font-size: 11px;
+        padding: 6px;
+    }
+
+    .description {
+        font-size: 13px;
+    }
+
+    .buttons button {
+        min-height: 46px;
+        font-size: 14px;
+    }
+}
+
+/* =========================
+   SMALL PHONE
+========================= */
+
+@media (max-width: 430px) {
+
+    .cars {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .car-image {
+        aspect-ratio: 16 / 10;
+    }
+
+    .car-info {
+        padding: 15px;
+    }
+
+    .car h2 {
+        font-size: 20px;
+    }
+
+    .price {
+        font-size: 22px;
+    }
+
+    .specs {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .description {
+        font-size: 14px;
+    }
+}
+
+/* =========================
+   ANDROID LANDSCAPE
+========================= */
+
+@media (orientation: landscape) and (max-height: 600px) {
+
+    header {
+        padding: 14px 20px;
+    }
+
+    .logo {
+        font-size: 25px;
+    }
+
+    .subtitle {
+        margin: 4px 0 10px;
+    }
+
+    .search {
+        height: 46px;
+    }
+
+    .filters {
+        margin-top: 9px;
+    }
+
+    .container {
+        margin-top: 18px;
+    }
+
+    .cars {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .car-image {
+        aspect-ratio: 16 / 9;
+    }
+
+    .car-info {
+        padding: 12px;
+    }
+
+    .description {
+        font-size: 13px;
+    }
+}
+
+/* LARGE LANDSCAPE PHONE / SMALL TABLET */
+
+@media (orientation: landscape) and (min-width: 700px) {
+
+    .cars {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 </style>
-
 </head>
 
 
 <body>
 
+
 <header>
 
-<h1>🚗 AutoMarket</h1>
+    <h1 class="logo">🚗 AutoMarket</h1>
 
-<p>Cars for Sale — USD</p>
+    <p class="subtitle">
+        Find Your Next Car
+    </p>
 
-<input
-class="search"
-id="search"
-type="text"
-placeholder="Search cars..."
-onkeyup="searchCars()">
+    <div class="search-box">
+
+        <span class="search-icon">🔍</span>
+
+        <input
+            id="search"
+            class="search"
+            type="search"
+            placeholder="Search cars..."
+            autocomplete="off"
+            oninput="filterCars()"
+        >
+
+    </div>
+
+
+    <div class="filters">
+
+        <button
+            class="filter-btn active"
+            data-filter="all"
+            onclick="setFilter('all', this)">
+            All
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="Toyota"
+            onclick="setFilter('Toyota', this)">
+            Toyota
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="BMW"
+            onclick="setFilter('BMW', this)">
+            BMW
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="Mercedes"
+            onclick="setFilter('Mercedes', this)">
+            Mercedes
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="Audi"
+            onclick="setFilter('Audi', this)">
+            Audi
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="Tesla"
+            onclick="setFilter('Tesla', this)">
+            Tesla
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="Ford"
+            onclick="setFilter('Ford', this)">
+            Ford
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="Hyundai"
+            onclick="setFilter('Hyundai', this)">
+            Hyundai
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="Kia"
+            onclick="setFilter('Kia', this)">
+            Kia
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="Nissan"
+            onclick="setFilter('Nissan', this)">
+            Nissan
+        </button>
+
+    </div>
 
 </header>
 
 
-<div class="container">
+<main class="container">
 
-<div class="cars">
+    <div class="section-header">
 
+        <h2 class="section-title">
+            Available Cars
+        </h2>
 
-<!-- TOYOTA CAMRY -->
+        <span
+            class="car-count"
+            id="carCount">
+            24 cars
+        </span>
 
-<div class="car"
-data-name="Toyota Camry">
-
-<img src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=900&q=80">
-
-<div class="car-info">
-
-<h2>Toyota Camry</h2>
-
-<div class="price">$23,434</div>
-
-<div class="market">
-2022 market reference
-</div>
-
-<div class="details">
-2022 • Automatic<br>
-35,000 miles • Petrol
-</div>
-
-<button
-class="buy"
-onclick="openBuy('Toyota Camry',23434)">
-Buy Now
-</button>
-
-<button
-class="whatsapp"
-onclick="contactWhatsApp('Toyota Camry')">
-WhatsApp Seller
-</button>
-
-</div>
-</div>
+    </div>
 
 
-<!-- BMW -->
+    <div class="cars" id="cars">
+
+
+<!-- =========================
+     1 TOYOTA CAMRY
+========================= -->
 
 <div class="car"
-data-name="BMW 3 Series">
+     data-name="Toyota Camry"
+     data-brand="Toyota">
 
-<img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=900&q=80">
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=900&q=80"
+        alt="Toyota Camry"
+        loading="lazy">
 
-<div class="car-info">
+    <div class="car-info">
 
-<h2>BMW 3 Series</h2>
+        <h2>Toyota Camry</h2>
 
-<div class="price">$25,396</div>
+        <div class="price">$23,434</div>
 
-<div class="market">
-2021 market reference
+        <div class="market">
+            2022 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Petrol</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚘 Sedan</div>
+            <div class="spec">🛣️ 35,000 km</div>
+        </div>
+
+        <div class="description">
+            Comfortable and reliable midsize sedan with a spacious
+            cabin, smooth automatic transmission and practical
+            everyday performance. Suitable for city and highway driving.
+        </div>
+
+        <div class="buttons">
+
+            <button class="buy"
+                onclick="openBuy('Toyota Camry',23434)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('Toyota Camry')">
+                WhatsApp
+            </button>
+
+        </div>
+
+    </div>
 </div>
 
-<div class="details">
-2021 • Automatic<br>
-28,000 miles • Petrol
-</div>
 
-<button
-class="buy"
-onclick="openBuy('BMW 3 Series',25396)">
-Buy Now
-</button>
-
-<button
-class="whatsapp"
-onclick="contactWhatsApp('BMW 3 Series')">
-WhatsApp Seller
-</button>
-
-</div>
-</div>
-
-
-<!-- MERCEDES -->
+<!-- 2 TOYOTA COROLLA -->
 
 <div class="car"
-data-name="Mercedes C Class">
+     data-name="Toyota Corolla"
+     data-brand="Toyota">
 
-<img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=80">
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1623869675781-80aa31012a5a?auto=format&fit=crop&w=900&q=80"
+        alt="Toyota Corolla"
+        loading="lazy">
 
-<div class="car-info">
+    <div class="car-info">
 
-<h2>Mercedes-Benz C-Class</h2>
+        <h2>Toyota Corolla</h2>
 
-<div class="price">$35,533</div>
+        <div class="price">$20,950</div>
 
-<div class="market">
-2023 market reference
+        <div class="market">
+            2022 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Petrol</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚘 Sedan</div>
+            <div class="spec">🛣️ 28,000 km</div>
+        </div>
+
+        <div class="description">
+            Economical compact sedan designed for dependable daily
+            transportation. Efficient engine, comfortable interior
+            and easy-to-drive handling.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('Toyota Corolla',20950)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('Toyota Corolla')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
 </div>
 
-<div class="details">
-2023 • Automatic<br>
-18,000 miles • Petrol
-</div>
 
-<button
-class="buy"
-onclick="openBuy('Mercedes-Benz C-Class',35533)">
-Buy Now
-</button>
-
-<button
-class="whatsapp"
-onclick="contactWhatsApp('Mercedes-Benz C-Class')">
-WhatsApp Seller
-</button>
-
-</div>
-</div>
-
-
-<!-- LAND CRUISER -->
+<!-- 3 RAV4 -->
 
 <div class="car"
-data-name="Toyota Land Cruiser">
+     data-name="Toyota RAV4"
+     data-brand="Toyota">
 
-<img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80">
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1581540222194-0def2dda95b8?auto=format&fit=crop&w=900&q=80"
+        alt="Toyota RAV4"
+        loading="lazy">
 
-<div class="car-info">
+    <div class="car-info">
 
-<h2>Toyota Land Cruiser</h2>
+        <h2>Toyota RAV4</h2>
 
-<div class="price">$62,721</div>
+        <div class="price">$28,500</div>
 
-<div class="market">
-Current market reference
+        <div class="market">
+            2022 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Petrol</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚙 SUV</div>
+            <div class="spec">🛣️ 31,000 km</div>
+        </div>
+
+        <div class="description">
+            Practical SUV with good cabin space, comfortable seating
+            and versatile cargo capacity. A useful choice for family
+            and everyday travel.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('Toyota RAV4',28500)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('Toyota RAV4')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
 </div>
 
-<div class="details">
-Automatic • SUV<br>
-Used • Diesel/Petrol
-</div>
 
-<button
-class="buy"
-onclick="openBuy('Toyota Land Cruiser',62721)">
-Buy Now
-</button>
-
-<button
-class="whatsapp"
-onclick="contactWhatsApp('Toyota Land Cruiser')">
-WhatsApp Seller
-</button>
-
-</div>
-</div>
-
-
-<!-- AUDI -->
+<!-- 4 LAND CRUISER -->
 
 <div class="car"
-data-name="Audi A6">
+     data-name="Toyota Land Cruiser"
+     data-brand="Toyota">
 
-<img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=900&q=80">
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=900&q=80"
+        alt="Toyota Land Cruiser"
+        loading="lazy">
 
-<div class="car-info">
+    <div class="car-info">
 
-<h2>Audi A6</h2>
+        <h2>Toyota Land Cruiser</h2>
 
-<div class="price">$31,051</div>
+        <div class="price">$62,721</div>
 
-<div class="market">
-2022 market reference
+        <div class="market">
+            2024 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Diesel</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚙 4x4 SUV</div>
+            <div class="spec">🛣️ 20,000 km</div>
+        </div>
+
+        <div class="description">
+            Large 4x4 SUV built for long-distance travel and demanding
+            road conditions. Spacious cabin, strong drivetrain and
+            excellent utility.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('Toyota Land Cruiser',62721)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('Toyota Land Cruiser')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
 </div>
 
-<div class="details">
-2022 • Automatic<br>
-22,000 miles • Petrol
-</div>
 
-<button
-class="buy"
-onclick="openBuy('Audi A6',31051)">
-Buy Now
-</button>
-
-<button
-class="whatsapp"
-onclick="contactWhatsApp('Audi A6')">
-WhatsApp Seller
-</button>
-
-</div>
-</div>
-
-
-<!-- RANGE ROVER -->
+<!-- 5 PRADO -->
 
 <div class="car"
-data-name="Range Rover">
+     data-name="Toyota Prado"
+     data-brand="Toyota">
 
-<img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=900&q=80">
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80"
+        alt="Toyota Prado"
+        loading="lazy">
 
-<div class="car-info">
+    <div class="car-info">
 
-<h2>Range Rover</h2>
+        <h2>Toyota Prado</h2>
 
-<div class="price">$40,438</div>
+        <div class="price">$48,900</div>
 
-<div class="market">
-2021 market reference
+        <div class="market">
+            2022 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Diesel</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚙 4x4 SUV</div>
+            <div class="spec">🛣️ 42,000 km</div>
+        </div>
+
+        <div class="description">
+            Premium four-wheel-drive SUV combining passenger comfort
+            with off-road capability and generous interior space.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('Toyota Prado',48900)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('Toyota Prado')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
 </div>
 
-<div class="details">
-2021 • Automatic<br>
-30,000 miles • Used
-</div>
 
-<button
-class="buy"
-onclick="openBuy('Range Rover',40438)">
-Buy Now
-</button>
-
-<button
-class="whatsapp"
-onclick="contactWhatsApp('Range Rover')">
-WhatsApp Seller
-</button>
-
-</div>
-</div>
-
-
-<!-- TESLA -->
+<!-- 6 BMW 3 -->
 
 <div class="car"
-data-name="Tesla Model 3">
+     data-name="BMW 3 Series"
+     data-brand="BMW">
 
-<img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=900&q=80">
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=900&q=80"
+        alt="BMW 3 Series"
+        loading="lazy">
 
-<div class="car-info">
+    <div class="car-info">
 
-<h2>Tesla Model 3</h2>
+        <h2>BMW 3 Series</h2>
 
-<div class="price">$27,541</div>
+        <div class="price">$25,396</div>
 
-<div class="market">
-2023 market reference
+        <div class="market">
+            2021 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Petrol</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚘 Sedan</div>
+            <div class="spec">🛣️ 34,000 km</div>
+        </div>
+
+        <div class="description">
+            Sporty premium sedan offering responsive handling,
+            modern technology, quality materials and a driver-focused
+            interior.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('BMW 3 Series',25396)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('BMW 3 Series')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
 </div>
 
-<div class="details">
-2023 • Automatic<br>
-15,000 miles • Electric
-</div>
 
-<button
-class="buy"
-onclick="openBuy('Tesla Model 3',27541)">
-Buy Now
-</button>
-
-<button
-class="whatsapp"
-onclick="contactWhatsApp('Tesla Model 3')">
-WhatsApp Seller
-</button>
-
-</div>
-</div>
-
-
-<!-- MUSTANG -->
+<!-- 7 BMW 5 -->
 
 <div class="car"
-data-name="Ford Mustang">
+     data-name="BMW 5 Series"
+     data-brand="BMW">
 
-<img src="https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?auto=format&fit=crop&w=900&q=80">
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1523983300419-9a08f1baf7b8?auto=format&fit=crop&w=900&q=80"
+        alt="BMW 5 Series"
+        loading="lazy">
 
-<div class="car-info">
+    <div class="car-info">
 
-<h2>Ford Mustang</h2>
+        <h2>BMW 5 Series</h2>
 
-<div class="price">$34,391</div>
+        <div class="price">$39,800</div>
 
-<div class="market">
-2022 market reference
+        <div class="market">
+            2022 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Petrol</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚘 Sedan</div>
+            <div class="spec">🛣️ 29,000 km</div>
+        </div>
+
+        <div class="description">
+            Executive sedan with a refined cabin, comfortable ride,
+            strong performance and advanced driver-assistance features.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('BMW 5 Series',39800)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('BMW 5 Series')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
 </div>
 
-<div class="details">
-2022 • Automatic<br>
-20,000 miles • Petrol
+
+<!-- 8 BMW X5 -->
+
+<div class="car"
+     data-name="BMW X5"
+     data-brand="BMW">
+
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1556189250-72ba954cfc2b?auto=format&fit=crop&w=900&q=80"
+        alt="BMW X5"
+        loading="lazy">
+
+    <div class="car-info">
+
+        <h2>BMW X5</h2>
+
+        <div class="price">$52,400</div>
+
+        <div class="market">
+            2022 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Petrol</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚙 SUV</div>
+            <div class="spec">🛣️ 27,000 km</div>
+        </div>
+
+        <div class="description">
+            Premium SUV combining strong performance, comfortable
+            seating, generous cargo space and modern technology.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('BMW X5',52400)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('BMW X5')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
 </div>
 
-<button
-class="buy"
-onclick="openBuy('Ford Mustang',34391)">
-Buy Now
-</button>
 
-<button
-class="whatsapp"
-onclick="contactWhatsApp('Ford Mustang')">
-WhatsApp Seller
-</button>
+<!-- 9 MERCEDES C -->
 
+<div class="car"
+     data-name="Mercedes-Benz C-Class"
+     data-brand="Mercedes">
+
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=80"
+        alt="Mercedes-Benz C-Class"
+        loading="lazy">
+
+    <div class="car-info">
+
+        <h2>Mercedes-Benz C-Class</h2>
+
+        <div class="price">$35,533</div>
+
+        <div class="market">
+            2023 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Petrol</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚘 Sedan</div>
+            <div class="spec">🛣️ 19,000 km</div>
+        </div>
+
+        <div class="description">
+            Modern luxury sedan with a refined interior, smooth
+            automatic transmission, premium comfort and advanced
+            infotainment.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('Mercedes-Benz C-Class',35533)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('Mercedes-Benz C-Class')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
 </div>
+
+
+<!-- 10 MERCEDES E -->
+
+<div class="car"
+     data-name="Mercedes-Benz E-Class"
+     data-brand="Mercedes">
+
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1618843479615-5a5b5e8d8c3f?auto=format&fit=crop&w=900&q=80"
+        alt="Mercedes-Benz E-Class"
+        loading="lazy">
+
+    <div class="car-info">
+
+        <h2>Mercedes-Benz E-Class</h2>
+
+        <div class="price">$46,800</div>
+
+        <div class="market">
+            2022 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Petrol</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚘 Sedan</div>
+            <div class="spec">🛣️ 24,000 km</div>
+        </div>
+
+        <div class="description">
+            Executive luxury sedan focused on comfort, quiet driving,
+            premium materials and sophisticated technology.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('Mercedes-Benz E-Class',46800)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('Mercedes-Benz E-Class')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
 </div>
 
 
-</div>
+<!-- 11 GLE -->
+
+<div class="car"
+     data-name="Mercedes-Benz GLE"
+     data-brand="Mercedes">
+
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=900&q=80"
+        alt="Mercedes-Benz GLE"
+        loading="lazy">
+
+    <div class="car-info">
+
+        <h2>Mercedes-Benz GLE</h2>
+
+        <div class="price">$58,500</div>
+
+        <div class="market">
+            2022 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Petrol</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚙 SUV</div>
+            <div class="spec">🛣️ 26,000 km</div>
+        </div>
+
+        <div class="description">
+            Luxury SUV with spacious seating, premium cabin materials,
+            comfortable suspension and modern safety technology.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('Mercedes-Benz GLE',58500)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('Mercedes-Benz GLE')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
 </div>
 
 
-<!-- BUY WINDOW -->
+<!-- 12 AUDI A4 -->
+
+<div class="car"
+     data-name="Audi A4"
+     data-brand="Audi">
+
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=900&q=80"
+        alt="Audi A4"
+        loading="lazy">
+
+    <div class="car-info">
+
+        <h2>Audi A4</h2>
+
+        <div class="price">$29,400</div>
+
+        <div class="market">
+            2022 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Petrol</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚘 Sedan</div>
+            <div class="spec">🛣️ 25,000 km</div>
+        </div>
+
+        <div class="description">
+            Compact luxury sedan with a refined cabin, responsive
+            handling, comfortable ride and modern digital features.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('Audi A4',29400)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('Audi A4')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- 13 AUDI A6 -->
+
+<div class="car"
+     data-name="Audi A6"
+     data-brand="Audi">
+
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=900&q=80"
+        alt="Audi A6"
+        loading="lazy">
+
+    <div class="car-info">
+
+        <h2>Audi A6</h2>
+
+        <div class="price">$31,051</div>
+
+        <div class="market">
+            2022 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Petrol</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚘 Sedan</div>
+            <div class="spec">🛣️ 23,000 km</div>
+        </div>
+
+        <div class="description">
+            Executive sedan offering a quiet cabin, premium materials,
+            smooth performance and modern technology.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('Audi A6',31051)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('Audi A6')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- 14 AUDI Q5 -->
+
+<div class="car"
+     data-name="Audi Q5"
+     data-brand="Audi">
+
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=900&q=80"
+        alt="Audi Q5"
+        loading="lazy">
+
+    <div class="car-info">
+
+        <h2>Audi Q5</h2>
+
+        <div class="price">$42,700</div>
+
+        <div class="market">
+            2022 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Petrol</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚙 SUV</div>
+            <div class="spec">🛣️ 22,000 km</div>
+        </div>
+
+        <div class="description">
+            Premium SUV with a comfortable cabin, versatile cargo
+            space, strong road performance and advanced technology.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('Audi Q5',42700)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('Audi Q5')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- 15 RANGE ROVER -->
+
+<div class="car"
+     data-name="Range Rover"
+     data-brand="Range Rover">
+
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=900&q=80"
+        alt="Range Rover"
+        loading="lazy">
+
+    <div class="car-info">
+
+        <h2>Range Rover</h2>
+
+        <div class="price">$40,438</div>
+
+        <div class="market">
+            2021 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Diesel</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚙 Luxury SUV</div>
+            <div class="spec">🛣️ 48,000 km</div>
+        </div>
+
+        <div class="description">
+            Luxury SUV combining premium comfort with four-wheel-drive
+            capability, spacious seating and strong road presence.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('Range Rover',40438)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('Range Rover')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- 16 RANGE ROVER SPORT -->
+
+<div class="car"
+     data-name="Range Rover Sport"
+     data-brand="Range Rover">
+
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80"
+        alt="Range Rover Sport"
+        loading="lazy">
+
+    <div class="car-info">
+
+        <h2>Range Rover Sport</h2>
+
+        <div class="price">$56,900</div>
+
+        <div class="market">
+            2022 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Petrol</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚙 SUV</div>
+            <div class="spec">🛣️ 30,000 km</div>
+        </div>
+
+        <div class="description">
+            Performance-oriented luxury SUV with a premium interior,
+            strong engine performance and capable four-wheel drive.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('Range Rover Sport',56900)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('Range Rover Sport')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- 17 TESLA MODEL 3 -->
+
+<div class="car"
+     data-name="Tesla Model 3"
+     data-brand="Tesla">
+
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=900&q=80"
+        alt="Tesla Model 3"
+        loading="lazy">
+
+    <div class="car-info">
+
+        <h2>Tesla Model 3</h2>
+
+        <div class="price">$27,541</div>
+
+        <div class="market">
+            2023 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⚡ Electric</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚘 Sedan</div>
+            <div class="spec">🛣️ 18,000 km</div>
+        </div>
+
+        <div class="description">
+            Fully electric sedan with a minimalist interior, instant
+            electric acceleration and a large central touchscreen.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('Tesla Model 3',27541)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('Tesla Model 3')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- 18 TESLA MODEL Y -->
+
+<div class="car"
+     data-name="Tesla Model Y"
+     data-brand="Tesla">
+
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1617704548623-340376564e68?auto=format&fit=crop&w=900&q=80"
+        alt="Tesla Model Y"
+        loading="lazy">
+
+    <div class="car-info">
+
+        <h2>Tesla Model Y</h2>
+
+        <div class="price">$34,900</div>
+
+        <div class="market">
+            2023 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⚡ Electric</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚙 SUV</div>
+            <div class="spec">🛣️ 17,000 km</div>
+        </div>
+
+        <div class="description">
+            Electric crossover with flexible cargo space, modern
+            technology and a comfortable cabin for everyday driving.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('Tesla Model Y',34900)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('Tesla Model Y')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- 19 MUSTANG -->
+
+<div class="car"
+     data-name="Ford Mustang"
+     data-brand="Ford">
+
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?auto=format&fit=crop&w=900&q=80"
+        alt="Ford Mustang"
+        loading="lazy">
+
+    <div class="car-info">
+
+        <h2>Ford Mustang</h2>
+
+        <div class="price">$34,391</div>
+
+        <div class="market">
+            2022 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Petrol</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🏎️ Sports</div>
+            <div class="spec">🛣️ 21,000 km</div>
+        </div>
+
+        <div class="description">
+            Iconic American sports car with strong performance,
+            distinctive styling and a driver-focused interior.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('Ford Mustang',34391)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('Ford Mustang')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- 20 FORD EXPLORER -->
+
+<div class="car"
+     data-name="Ford Explorer"
+     data-brand="Ford">
+
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80"
+        alt="Ford Explorer"
+        loading="lazy">
+
+    <div class="car-info">
+
+        <h2>Ford Explorer</h2>
+
+        <div class="price">$36,700</div>
+
+        <div class="market">
+            2022 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Petrol</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚙 SUV</div>
+            <div class="spec">🛣️ 32,000 km</div>
+        </div>
+
+        <div class="description">
+            Spacious family SUV with three-row seating, practical
+            cargo capacity and comfortable long-distance driving.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('Ford Explorer',36700)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('Ford Explorer')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- 21 HYUNDAI TUCSON -->
+
+<div class="car"
+     data-name="Hyundai Tucson"
+     data-brand="Hyundai">
+
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=900&q=80"
+        alt="Hyundai Tucson"
+        loading="lazy">
+
+    <div class="car-info">
+
+        <h2>Hyundai Tucson</h2>
+
+        <div class="price">$26,400</div>
+
+        <div class="market">
+            2023 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Petrol</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚙 SUV</div>
+            <div class="spec">🛣️ 22,000 km</div>
+        </div>
+
+        <div class="description">
+            Modern compact SUV with a comfortable cabin, useful cargo
+            space, practical features and smooth everyday driving.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('Hyundai Tucson',26400)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('Hyundai Tucson')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- 22 HYUNDAI SANTA FE -->
+
+<div class="car"
+     data-name="Hyundai Santa Fe"
+     data-brand="Hyundai">
+
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=900&q=80"
+        alt="Hyundai Santa Fe"
+        loading="lazy">
+
+    <div class="car-info">
+
+        <h2>Hyundai Santa Fe</h2>
+
+        <div class="price">$32,800</div>
+
+        <div class="market">
+            2023 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Petrol</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚙 SUV</div>
+            <div class="spec">🛣️ 20,000 km</div>
+        </div>
+
+        <div class="description">
+            Comfortable midsize SUV with spacious seating, useful
+            cargo capacity and family-friendly safety features.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('Hyundai Santa Fe',32800)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('Hyundai Santa Fe')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- 23 KIA SPORTAGE -->
+
+<div class="car"
+     data-name="Kia Sportage"
+     data-brand="Kia">
+
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=900&q=80"
+        alt="Kia Sportage"
+        loading="lazy">
+
+    <div class="car-info">
+
+        <h2>Kia Sportage</h2>
+
+        <div class="price">$25,900</div>
+
+        <div class="market">
+            2023 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Petrol</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚙 SUV</div>
+            <div class="spec">🛣️ 19,000 km</div>
+        </div>
+
+        <div class="description">
+            Stylish compact SUV offering comfortable seating,
+            practical storage and modern infotainment technology.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('Kia Sportage',25900)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('Kia Sportage')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- 24 NISSAN PATROL -->
+
+<div class="car"
+     data-name="Nissan Patrol"
+     data-brand="Nissan">
+
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80"
+        alt="Nissan Patrol"
+        loading="lazy">
+
+    <div class="car-info">
+
+        <h2>Nissan Patrol</h2>
+
+        <div class="price">$55,800</div>
+
+        <div class="market">
+            2022 • Market reference
+        </div>
+
+        <div class="specs">
+            <div class="spec">⛽ Petrol</div>
+            <div class="spec">⚙️ Automatic</div>
+            <div class="spec">🚙 4x4 SUV</div>
+            <div class="spec">🛣️ 36,000 km</div>
+        </div>
+
+        <div class="description">
+            Large luxury SUV with strong road performance, spacious
+            seating, four-wheel-drive capability and long-distance
+            comfort.
+        </div>
+
+        <div class="buttons">
+            <button class="buy"
+                onclick="openBuy('Nissan Patrol',55800)">
+                Buy Now
+            </button>
+
+            <button class="whatsapp"
+                onclick="contactWhatsApp('Nissan Patrol')">
+                WhatsApp
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+    </div>
+
+
+    <div class="no-results" id="noResults">
+
+        <h3>🚗 No cars found</h3>
+
+        <p>
+            Try another car name or brand.
+        </p>
+
+    </div>
+
+</main>
+
+
+<!-- =========================
+     BUY MODAL
+========================= -->
 
 <div
-class="modal"
-id="buyModal">
+    class="modal"
+    id="buyModal">
 
-<div class="modal-box">
+    <div class="modal-box">
 
-<h2>Buy Vehicle</h2>
+        <h2>🚗 Buy Vehicle</h2>
 
-<p id="selectedCar"></p>
+        <div class="selected-car">
 
-<h2 id="selectedPrice"></h2>
+            <div
+                class="selected-car-name"
+                id="selectedCar">
+            </div>
 
-<input
-id="customerName"
-type="text"
-placeholder="Your name">
+            <div
+                class="selected-price"
+                id="selectedPrice">
+            </div>
 
-<input
-id="customerEmail"
-type="email"
-placeholder="Your email address">
+        </div>
 
-<button
-class="buy"
-onclick="sendInquiry()">
-Continue
-</button>
 
-<button
-class="close"
-onclick="closeBuy()">
-Cancel
-</button>
+        <input
+            id="customerName"
+            type="text"
+            placeholder="Your name"
+            autocomplete="name">
+
+
+        <input
+            id="customerEmail"
+            type="email"
+            placeholder="Your email address"
+            autocomplete="email">
+
+
+        <button
+            class="buy"
+            onclick="sendInquiry()">
+            Continue
+        </button>
+
+
+        <button
+            class="close"
+            onclick="closeBuy()">
+            Cancel
+        </button>
+
+    </div>
 
 </div>
-</div>
 
+
+<!-- =========================
+     STICKY WHATSAPP
+========================= -->
+
+<button
+    class="sticky-whatsapp"
+    onclick="contactWhatsApp('AutoMarket')">
+    💬 WhatsApp
+</button>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
-<p>© 2026 AutoMarket</p>
+    <p>
+        <strong>🚗 AutoMarket</strong>
+    </p>
 
-<p>Cars • USD • WhatsApp</p>
+    <p>
+        Cars • USD • WhatsApp
+    </p>
+
+    <p>
+        © 2026 AutoMarket
+    </p>
 
 </footer>
 
 
 <script>
 
-const WHATSAPP_NUMBER =
-"251908606005";
+/* =========================
+   WHATSAPP
+========================= */
+
+const WHATSAPP_NUMBER = "251908606005";
 
 
-function searchCars(){
+function contactWhatsApp(carName) {
 
-const text =
-document.getElementById("search")
-.value.toLowerCase();
+    const message =
+        "Hello, I am interested in the " +
+        carName +
+        " listed on AutoMarket.";
 
-document
-.querySelectorAll(".car")
-.forEach(function(car){
+    const url =
+        "https://wa.me/" +
+        WHATSAPP_NUMBER +
+        "?text=" +
+        encodeURIComponent(message);
 
-const name =
-car.getAttribute("data-name")
-.toLowerCase();
+    window.open(url, "_blank");
+}
 
-car.style.display =
-name.includes(text)
-? "block"
-: "none";
 
-});
+/* =========================
+   SEARCH + FILTER
+========================= */
+
+let currentFilter = "all";
+
+
+function filterCars() {
+
+    const searchText =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const cars =
+        document.querySelectorAll(".car");
+
+    let visible = 0;
+
+
+    cars.forEach(function(car) {
+
+        const name =
+            car
+            .getAttribute("data-name")
+            .toLowerCase();
+
+        const brand =
+            car
+            .getAttribute("data-brand")
+            .toLowerCase();
+
+
+        const matchesSearch =
+            name.includes(searchText) ||
+            brand.includes(searchText);
+
+
+        const matchesFilter =
+            currentFilter === "all" ||
+            car
+            .getAttribute("data-brand")
+            .toLowerCase()
+            .includes(currentFilter.toLowerCase());
+
+
+        if (matchesSearch && matchesFilter) {
+
+            car.style.display = "";
+
+            visible++;
+
+        } else {
+
+            car.style.display = "none";
+
+        }
+
+    });
+
+
+    updateCount(visible);
 
 }
 
 
-function contactWhatsApp(carName){
+function setFilter(filter, button) {
 
-const message =
-"Hello, I am interested in the "
-+ carName
-+ " listed on AutoMarket.";
+    currentFilter = filter;
 
-const url =
-"https://wa.me/"
-+ WHATSAPP_NUMBER
-+ "?text="
-+ encodeURIComponent(message);
 
-window.open(url,"_blank");
+    document
+    .querySelectorAll(".filter-btn")
+    .forEach(function(btn) {
+
+        btn.classList.remove("active");
+
+    });
+
+
+    button.classList.add("active");
+
+
+    filterCars();
 
 }
 
+
+function updateCount(number) {
+
+    document
+    .getElementById("carCount")
+    .innerText =
+        number + (number === 1 ? " car" : " cars");
+
+
+    document
+    .getElementById("noResults")
+    .style.display =
+        number === 0 ? "block" : "none";
+
+}
+
+
+/* =========================
+   BUY MODAL
+========================= */
 
 let selectedCar = "";
 let selectedPrice = 0;
 
 
-function openBuy(car, price){
+function openBuy(car, price) {
 
-selectedCar = car;
-selectedPrice = price;
+    selectedCar = car;
 
-document.getElementById("selectedCar")
-.innerText =
-"Vehicle: " + car;
-
-document.getElementById("selectedPrice")
-.innerText =
-"$" + price.toLocaleString();
-
-document.getElementById("buyModal")
-.style.display = "block";
-
-}
+    selectedPrice = price;
 
 
-function closeBuy(){
-
-document.getElementById("buyModal")
-.style.display = "none";
-
-}
+    document
+    .getElementById("selectedCar")
+    .innerText =
+        "Vehicle: " + car;
 
 
-function sendInquiry(){
-
-const name =
-document.getElementById("customerName")
-.value.trim();
-
-const email =
-document.getElementById("customerEmail")
-.value.trim();
+    document
+    .getElementById("selectedPrice")
+    .innerText =
+        "$" + price.toLocaleString();
 
 
-if(!name || !email){
-
-alert(
-"Please enter your name and email."
-);
-
-return;
-
-}
-
-
-const form =
-document.createElement("form");
-
-form.method = "POST";
-
-form.action =
-"https://formsubmit.co/ermiyash9@gmail.com";
-
-
-addField(
-form,
-"Customer Name",
-name
-);
-
-addField(
-form,
-"Customer Email",
-email
-);
-
-addField(
-form,
-"Vehicle",
-selectedCar
-);
-
-addField(
-form,
-"Price",
-"$" + selectedPrice.toLocaleString()
-);
-
-addField(
-form,
-"_subject",
-"New AutoMarket Car Inquiry"
-);
-
-addField(
-form,
-"_template",
-"table"
-);
-
-addField(
-form,
-"_captcha",
-"false"
-);
-
-addField(
-form,
-"_next",
-window.location.href
-);
-
-
-document.body.appendChild(form);
-
-form.submit();
-
-}
-
-
-function addField(form, name, value){
-
-const input =
-document.createElement("input");
-
-input.type = "hidden";
-
-input.name = name;
-
-input.value = value;
-
-form.appendChild(input);
-
-}
-
-</script>
-
-</body>
-</html>
+    document
+    .get
