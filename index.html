@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AutoMarket - Cars for Sale</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    color: #222;
+}
+
+header {
+    background: #111;
+    color: white;
+    padding: 22px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0 0 8px;
+}
+
+.search {
+    width: 90%;
+    max-width: 500px;
+    padding: 13px;
+    border: 0;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.container {
+    width: 94%;
+    max-width: 1100px;
+    margin: 25px auto;
+}
+
+.cars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.car {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,.12);
+}
+
+.car img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+}
+
+.car-info {
+    padding: 15px;
+}
+
+.car h2 {
+    margin-top: 0;
+}
+
+.price {
+    color: #0a8f3d;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.market {
+    font-size: 13px;
+    color: #777;
+    margin-top: 4px;
+}
+
+.details {
+    color: #666;
+    line-height: 1.6;
+    margin-top: 8px;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    border: 0;
+    border-radius: 7px;
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.buy {
+    background: #1677ff;
+    color: white;
+}
+
+.whatsapp {
+    background: #25D366;
+    color: white;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.7);
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal-box {
+    background: white;
+    max-width: 450px;
+    margin: 60px auto;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.modal-box input {
+    width: 100%;
+    padding: 13px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 16px;
+}
+
+.close {
+    background: #777;
+    color: white;
+}
+
+footer {
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>🚗 AutoMarket</h1>
+
+<p>Cars for Sale — USD</p>
+
+<input
+class="search"
+id="search"
+type="text"
+placeholder="Search cars..."
+onkeyup="searchCars()">
+
+</header>
+
+<div class="container">
+
+<div class="cars">
+
+<!-- CAMRY -->
+<div class="car" data-name="Toyota Camry">
+
+<img src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=900&q=80">
+
+<div class="car-info">
+
+<h2>Toyota Camry</h2>
+
+<div class="price">$23,434</div>
+
+<div class="market">2022 market reference</div>
+
+<div class="details">
+2022 • Automatic<br>
+35,000 miles • Petrol
+</div>
+
+<button
+class="buy"
+onclick="openBuy('Toyota Camry',23434)">
+Buy Now
+</button>
+
+<button
+class="whatsapp"
+onclick="contactWhatsApp('Toyota Camry')">
+WhatsApp Seller
+</button>
+
+</div>
+</div>
+
+
+<!-- BMW -->
+<div class="car" data-name="BMW 3 Series">
+
+<img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=900&q=80">
+
+<div class="car-info">
+
+<h2>BMW 3 Series</h2>
+
+<div class="price">$25,396</div>
+
+<div class="market">2021 market reference</div>
+
+<div class="details">
+2021 • Automatic<br>
+28,000 miles • Petrol
+</div>
+
+<button
+class="buy"
+onclick="openBuy('BMW 3 Series',25396)">
+Buy Now
+</button>
+
+<button
+class="whatsapp"
+onclick="contactWhatsApp('BMW 3 Series')">
+WhatsApp Seller
+</button>
+
+</div>
+</div>
+
+
+<!-- MERCEDES -->
+<div class="car" data-name="Mercedes C Class">
+
+<img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=80">
+
+<div class="car-info">
+
+<h2>Mercedes-Benz C-Class</h2>
+
+<div class="price">$35,533</div>
+
+<div class="market">2023 market reference</div>
+
+<div class="details">
+2023 • Automatic<br>
+18,000 miles • Petrol
+</div>
+
+<button
+class="buy"
+onclick="openBuy('Mercedes-Benz C-Class',35533)">
+Buy Now
+</button>
+
+<button
+class="whatsapp"
+onclick="contactWhatsApp('Mercedes-Benz C-Class')">
+WhatsApp Seller
+</button>
+
+</div>
+</div>
+
+
+<!-- LAND CRUISER -->
+<div class="car" data-name="Toyota Land Cruiser">
+
+<img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80">
+
+<div class="car-info">
+
+<h2>Toyota Land Cruiser</h2>
+
+<div class="price">$62,721</div>
+
+<div class="market">Current market reference</div>
+
+<div class="details">
+Automatic • SUV<br>
+Used • Diesel/Petrol
+</div>
+
+<button
+class="buy"
+onclick="openBuy('Toyota Land Cruiser',62721)">
+Buy Now
+</button>
+
+<button
+class="whatsapp"
+onclick="contactWhatsApp('Toyota Land Cruiser')">
+WhatsApp Seller
+</button>
+
+</div>
+</div>
+
+
+<!-- AUDI -->
+<div class="car" data-name="Audi A6">
+
+<img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=900&q=80">
+
+<div class="car-info">
+
+<h2>Audi A6</h2>
+
+<div class="price">$31,051</div>
+
+<div class="market">2022 market reference</div>
+
+<div class="details">
+2022 • Automatic<br>
+22,000 miles • Petrol
+</div>
+
+<button
+class="buy"
+onclick="openBuy('Audi A6',31051)">
+Buy Now
+</button>
+
+<button
+class="whatsapp"
+onclick="contactWhatsApp('Audi A6')">
+WhatsApp Seller
+</button>
+
+</div>
+</div>
+
+
+<!-- RANGE ROVER -->
+<div class="car" data-name="Range Rover">
+
+<img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=900&q=80">
+
+<div class="car-info">
+
+<h2>Range Rover</h2>
+
+<div class="price">$40,438</div>
+
+<div class="market">2021 market reference</div>
+
+<div class="details">
+2021 • Automatic<br>
+30,000 miles • Used
+</div>
+
+<button
+class="buy"
+onclick="openBuy('Range Rover',40438)">
+Buy Now
+</button>
+
+<button
+class="whatsapp"
+onclick="contactWhatsApp('Range Rover')">
+WhatsApp Seller
+</button>
+
+</div>
+</div>
+
+
+<!-- TESLA -->
+<div class="car" data-name="Tesla Model 3">
+
+<img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=900&q=80">
+
+<div class="car-info">
+
+<h2>Tesla Model 3</h2>
+
+<div class="price">$27,541</div>
+
+<div class="market">2023 market reference</div>
+
+<div class="details">
+2023 • Automatic<br>
+15,000 miles • Electric
+</div>
+
+<button
+class="buy"
+onclick="openBuy('Tesla Model 3',27541)">
+Buy Now
+</button>
+
+<button
+class="whatsapp"
+onclick="contactWhatsApp('Tesla Model 3')">
+WhatsApp Seller
+</button>
+
+</div>
+</div>
+
+
+<!-- MUSTANG -->
+<div class="car" data-name="Ford Mustang">
+
+<img src="https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?auto=format&fit=crop&w=900&q=80">
+
+<div class="car-info">
+
+<h2>Ford Mustang</h2>
+
+<div class="price">$34,391</div>
+
+<div class="market">2022 market reference</div>
+
+<div class="details">
+2022 • Automatic<br>
+20,000 miles • Petrol
+</div>
+
+<button
+class="buy"
+onclick="openBuy('Ford Mustang',34391)">
+Buy Now
+</button>
+
+<button
+class="whatsapp"
+onclick="contactWhatsApp('Ford Mustang')">
+WhatsApp Seller
+</button>
+
+</div>
+</div>
+
+</div>
+</div>
+
+
+<!-- BUY FORM -->
+
+<div class="modal" id="buyModal">
+
+<div class="modal-box">
+
+<h2>Buy Vehicle</h2>
+
+<p id="selectedCar"></p>
+
+<h2 id="selectedPrice"></h2>
+
+<input
+id="customerName"
+type="text"
+placeholder="Your name">
+
+<input
+id="customerEmail"
+type="email"
+placeholder="Your email address">
+
+<button
+class="buy"
+onclick="sendInquiry()">
+Continue
+</button>
+
+<button
+class="close"
+onclick="closeBuy()">
+Cancel
+</button>
+
+</div>
+</div>
+
+
+<footer>
+
+<p>© 2026 AutoMarket</p>
+
+<p>Cars • USD • WhatsApp</p>
+
+</footer>
+
+
+<script>
+
+/* WHATSAPP */
+
+const WHATSAPP_NUMBER = "251908606005";
+
+
+/* SEARCH */
+
+function searchCars(){
+
+const text =
+document.getElementById("search")
+.value.toLowerCase();
+
+document.querySelectorAll(".car").forEach(function(car){
+
+const name =
+car.getAttribute("data-name").toLowerCase();
+
+car.style.display =
+name.includes(text) ? "block" : "none";
+
+});
+
+}
+
+
+/* WHATSAPP */
+
+function contactWhatsApp(carName){
+
+const message =
+"Hello, I am interested in the "
++ carName
++ " listed on AutoMarket.";
+
+const url =
+"https://wa.me/"
++ WHATSAPP_NUMBER
++ "?text="
++ encodeURIComponent(message);
+
+window.open(url,"_blank");
+
+}
+
+
+/* BUY FORM */
+
+let selectedCar = "";
+let selectedPrice = 0;
+
+
+function openBuy(car, price){
+
+selectedCar = car;
+selectedPrice = price;
+
+document.getElementById("selectedCar").innerText =
+"Vehicle: " + car;
+
+document.getElementById("selectedPrice").innerText =
+"$" + price.toLocaleString();
+
+document.getElementById("buyModal").style.display =
+"block";
+
+}
+
+
+function closeBuy(){
+
+document.getElementById("buyModal").style.display =
+"none";
+
+}
+
+
+/* SEND INQUIRY TO YOUR EMAIL */
+
+function sendInquiry(){
+
+const name =
+document.getElementById("customerName")
+.value.trim();
+
+const email =
+document.getElementById("customerEmail")
+.value.trim();
+
+
+if(!name || !email){
+
+alert("Please enter your name and email.");
+
+return;
+
+}
+
+
+/* Create form */
+
+const form = document.createElement("form");
+
+form.method = "POST";
+
+form.action =
+"https://formsubmit.co/ermiyash9@gmail.com";
+
+
+/* Customer name */
+
+addField(
+form,
+"Customer Name",
+name
+);
+
+
+/* Customer email */
+
+addField(
+form,
+"Customer Email",
+email
+);
+
+
+/* Car */
+
+addField(
+form,
+"Vehicle",
+selectedCar
+);
+
+
+/* Price */
+
+addField(
+form,
+"Price",
+"$" + selectedPrice.toLocaleString()
+);
+
+
+/* Email subject */
+
+addField(
+form,
+"_subject",
+"New AutoMarket Car Inquiry"
+);
+
+
+/* Email format */
+
+addField(
+form,
+"_template",
+"table"
+);
+
+
+/* Redirect after sending */
+
+addField(
+form,
+"_next",
+window.location.href
+);
+
+
+/* Add form */
+
+document.body.appendChild(form);
+
+form.submit();
+
+}
+
+
+/* ADD FORM FIELD */
+
+function addField(form, name, value){
+
+const input =
+document.createElement("input");
+
+input.type = "hidden";
+
+input.name = name;
+
+input.value = value;
+
+form.appendChild(input);
+
+}
+
+</script>
+
+</body>
+</html>
